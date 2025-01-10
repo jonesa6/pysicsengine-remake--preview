@@ -1,0 +1,46 @@
+{
+    "name": "pysicsengine remake",
+    "description": "",
+    "dependencies": {
+        "device": "*"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json",
+        "pysics2.0.ts",
+        "sprites.ts",
+        "camera.ts",
+        "hitbox.ts",
+        "tilemap.ts",
+        "spritesevents.ts",
+        "tiles.ts",
+        "scene.ts",
+        "game.ts",
+        "spritemap_.ts",
+        "customgameover.ts",
+        "timers.ts",
+        "Sprites_.ts",
+        "interface.ts",
+        "spritesay.ts",
+        "Spritetext.ts",
+        "flags.ts",
+        "tilemap.g.jres",
+        "tilemap.g.ts",
+        "screen.ts",
+        "extrapower.ts",
+        "systemmenu_.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "1.12.58",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "tsprj"
+}
