@@ -140,7 +140,7 @@ hitbox: hitbox.hitbox
 lastx:number
 lasty:number
 isclipping:boolean
-eng:spritebase
+
 id:number
 visible:Boolean
 flags:flags
@@ -148,7 +148,7 @@ constructor(img:Image) {
     this.img=img
     this.recalcsize()
     this.isclipping = false
-    this.eng = new spritebase() 
+    
     this._x = 80
     this._y = 60
     this._vx = 0
@@ -193,35 +193,15 @@ public set bottom(bottom:number) {
     isStatic() {
         return this.image.isStatic();
     }
+    init() {
 
-}
-
-class spritebase {
-    sprite:sprite_
-    invisible: boolean
-    _obstacles: sprites.Obstacle[]
-   
-    public init() {
-        
-        game.onUpdate(function() {
+        game.onUpdate(function () {
             this.update()
         })
         game.onShade_(function () {
             this.draw()
         })
 
-    }
-    draw() {
-        screen.drawImage(this.sprite.img,this.sprite._x,this.sprite._y)
-    }
-
-    update() { //update x ,y ,vx ,vy
-        this.sprite.lastx = this.sprite._x
-        this.sprite.lasty = this.sprite._y
-        this.sprite._x =+ this.sprite._vx
-        this.sprite._y =+ this.sprite._vy
-        this.sprite._vx =+ this.sprite.ax
-        this.sprite._vy = + this.sprite.ay
     }
 }
 export class sprite_ extends baseprite_  {
@@ -231,10 +211,9 @@ export class sprite_ extends baseprite_  {
     constructor(img:Image) {
         super(img)
         this.hitbox = hitbox.createhitbox(this)
-        this.eng.sprite = this //give it a sprite
-        this.eng.init()
         scene.currentscene_.moddedpysicsengine.addSprite(this) //tell the physicsEngine that this sprite exists
         this.flags = new flags(this, false)
+        this.init()
     }
     __draw(camera: scene.Camera) {
         if (this.visible != (!this.flags.Invisible)) {this.visible = (!this.flags.Invisible)}
@@ -396,18 +375,19 @@ export class sprite_ extends baseprite_  {
                 this.image.width, this.image.height,
                 true, false);
     }
-protected run() {   
-    forever(function () {
-        
-        scene.setBackgroundImage(blank)
 
-            this.drawTransparentImage
-            this.eng.update()
-    })
+    draw() {
+        screen.drawImage(this.img, this._x, this._y)
+    }
 
+    update() { //update x ,y ,vx ,vy
+       this.lastx = this._x
+        this.lasty = this._y
+        this._x = + this._vx
+        this._y = + this._vy
+        this._vx = + this.ax
+        this._vy = + this.ay
+    }
 }
-}
- 
-
 }
 class Sprite_ extends moddedsprites.sprite_ { } // make it easily avible
